@@ -56,12 +56,10 @@
   (fn [note] (doall (map (comp inst #(+ note %)) chord-note-list)))
   )
 
-;; Now for the loop and arp generators....
-
-;;(periodic 250 (fn [] piano 60) 0)
 
 (defn arp-gen
-  "More documentation later, this one is weird"
+  "Takes a sequence of (possibly empty!) lists of notes, and plays
+   each list as a chord at regularly spaced time intervals of 'beat-duration'."
   [beat-duration sequence]
   (let [period (* beat-duration (count sequence))]
     (fn [gen-inst]
