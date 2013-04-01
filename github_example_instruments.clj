@@ -26,3 +26,17 @@
      (lf-tri freq)
      vol))
 ;; end of "copied from help" stuff
+
+;; no longer really copied from help.
+(definst snare [freq 110 attack 0.01 release 0.49 vol 0.5] 
+  (* (env-gen (perc attack release) 1 1 0 1 FREE)
+     (pink-noise)
+     vol))
+
+(definst kick [freq 110 attack 0.01 release 0.49 vol 0.5] 
+  (* (env-gen (perc attack release) 1 1 0 1 FREE)
+     (brown-noise)
+     (sin-osc freq)
+     vol))
+
+
