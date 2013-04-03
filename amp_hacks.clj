@@ -52,22 +52,18 @@
       vol))
   )
 
-(definst amped-perc-multi-tri [freq 110 attack 0.01 release 1.0 vol 0.4]
-  (amp-power-chord
-   (* (env-gen (perc attack release ) 1 1 0 1 FREE)
-      (+ (lf-tri freq)
-         (lf-tri (+ freq 1))
-         (lf-tri (+ freq 2))
-         (lf-tri (+ freq 3))
-         (lf-tri (+ freq 4))
-         (lf-tri (+ freq 5))
-         (lf-tri (+ freq 6))
-         (lf-tri (+ freq 7))
-         (lf-tri (+ freq 8))
-         (lf-tri (+ freq 9))
-         )
-      0.1
-      vol))
-  )
+(defmacro
+; The following does not work.
+;; (definst wierdo [freq 440]
+;;   (amp-power-chord 
+;;    (* (env-gen (perc 0.01 5.99) 1 1 0 1 FREE)
+;;       (overtone.sc.ugen-collide/+
+;;        (sin-osc (overtone.sc.ugen-collide/+
+;;                  (overtone.sc.ugen-collide/*
+;;                   (sin-osc 10) (perc 0.01 5.99) 50) freq))
+;;        (sin-osc (fifth freq)))
+;;       0.5) )
+;; )
+
 ;; end of non-linear amp experiments
 
