@@ -6,6 +6,7 @@
 
 ((arp-gen 250 '((0) (0) (5) (12) (7) (3) (5) (0) (0) (1) (3) (5) (7) (3) (0) ())) (fn [note] (amped-perc-sin (note-to-pitch (+ note 69)) )))
 
+(def experiment3 ((arp-gen 1000 '((0) (5) (0 7) (0 5 12))) (fn [note] (amped-sin-wave-undertone (note-to-pitch (+ note 69)) 880 0.01 1.89 0.1 0.4))))
 
 ;;; weird space-age sound
 (demo (amp-power-chord (* (env-gen (perc 0.01 5.99) 1 1 0 1 FREE) (sin-osc (+ (* (sin-osc 10) (perc 0.01 5.99) 50) 440)))))
