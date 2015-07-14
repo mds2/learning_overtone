@@ -20,10 +20,7 @@ automatically generate a continuous stream of mindless techno beats
 (which, of course, I would listen to while I wrote other code).  This
 goal is quite a long way off.
 
-Please note that a good chunk of my instrument definitions were stolen
-mindlessly (I am beginning to sound like the anti-Buddha with all my
-mindlessness) from
+Please note that a good chunk of my instrument definitions were 
+copied from
 https://github.com/overtone/overtone/wiki/Oscillators
-I fully expect to 'borrow' more instrument definitions from other
-sources.  Perhaps, if I feel particularly 'responsible' in the future,
-I will isolate them all in a separate file.
+
