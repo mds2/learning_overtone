@@ -17,8 +17,9 @@
 
 
 (defn start-song
-  []
-  ;;; TODO start recording
+  [song-file]
+  (if (not (empty? song-file))
+    (recording-start song-file))
   (def melody-chords
     ((arp-gen 250 (fib4 concat
                         (chord1 '(0 7 5))
@@ -27,7 +28,7 @@
                         (chord2 '(12 5 7 0))
                         14))
      (fn [note] (amped-sin-wave (note-to-pitch (+ note 57))
-                                0.01 0.89 0.1 0.4))))
+                                0.01 0.89 0.1 0.1))))
   (def melody-notes
     ((arp-gen 250 (fib4 concat
                         (chord1 '(0 7 5))
@@ -37,26 +38,33 @@
                         14))
      (fn [note] (amped-perc-sin (note-to-pitch (+ note 69))))))
   (def melody-drum
-        ((arp-gen 250 (fib4 concat
-                            '((0 7 12) () ())
-                            '((0) () (0 5) ())
-                            '(() (7) () (0))
-                            '((12 5) (7 0) () ())
-                            14))
-         (fn [note] (kick (note-to-pitch (+ note 33)))))))
+    ((arp-gen 250 (fib4 concat
+                        '((0 7 12) () ())
+                        '((0) () (0 5) ())
+                        '(() (7) () (0))
+                        '((12 5) (7 0) () ())
+                        14))
+     (fn [note] (kick (note-to-pitch (+ note 33)))))))
 
 
 (defn stop-melody []
-  (map (comp kill-player :id)  melody-notes))
+  (doall (map (comp kill-player :id)  melody-notes)))
 
 (defn stop-chords []
-  (map (comp kill-player :id)  melody-chords))
+  (doall (map (comp kill-player :id)  melody-chords)))
 
 (defn stop-drum []
-  (map (comp kill-player :id)  melody-drum))
+  (doall (map (comp kill-player :id)  melody-drum)))
 
 (defn stop-song []
-  ;;; TODO : stop recording
-  (map (comp kill-player :id) melody-chords)
-  (map (comp kill-player :id) melody-notes)
-  (map (comp kill-player :id) melody-drum))
+  (do
+    (doall (map (comp kill-player :id) melody-chords))
+    (doall (map (comp kill-player :id) melody-notes))
+    (doall (map (comp kill-player :id) melody-drum))
+    (recording-stop)))
+
+
+
+
+
+
