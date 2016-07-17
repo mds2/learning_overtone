@@ -1,5 +1,7 @@
-
+(ns learning-overtone.amplifiers)
 ;; non-linear amplifier experiments
+
+(use 'overtone.core)
 
 ; 0.5 * x * (-1 + x * (-3 + x * ( 2 + 4x)))
 ; -0.5 * x - 1.5 * x ^2 + x ^ 3 + 2 * x ^ 4
@@ -39,7 +41,7 @@
 
 (definst amped-sin-wave [freq 440 attack 0.01 sustain 0.4 release 0.1 vol 0.4] 
   (amp-power-chord
-   (* (env-gen (lin-env attack sustain release) 1 1 0 1 FREE)
+   (* (env-gen (lin attack sustain release) 1 1 0 1 FREE)
       (sin-osc freq)
       vol))
   )
@@ -47,7 +49,7 @@
 (definst amped-sin-wave-undertone [freq 440 undertone 110 attack 0.01
                                    sustain 0.4 release 0.1 vol 0.4] 
   (amp-power-chord
-   (* (env-gen (lin-env attack sustain release) 1 1 0 1 FREE)
+   (* (env-gen (lin attack sustain release) 1 1 0 1 FREE)
       (+ (sin-osc freq)
          (* (sin-osc undertone) 0.1))
       vol))

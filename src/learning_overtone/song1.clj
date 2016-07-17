@@ -1,5 +1,11 @@
-(load-file "learning_overtone/arp_hacks.clj")
-(load-file "learning_overtone/fibo.clj")
+(ns learning-overtone.song1)
+
+(use 'learning-overtone.arpeggio)
+(use 'learning-overtone.fibo)
+(use 'learning-overtone.amplifiers)
+(use 'learning-overtone.instruments)
+(use 'overtone.core)
+
 
 (defn chord1 [note] (cons note '()))
 (defn chord2 [note]
@@ -36,7 +42,8 @@
                         (chord1 '(0 4 7 12))
                         (chord1 '(12 5 7 0))
                         14))
-     (fn [note] (amped-perc-sin (note-to-pitch (+ note 69))))))
+     (fn [note] (amped-perc-sin (note-to-pitch (+ note 69))
+                                0.01 0.89 0.1 0.1))))
   (def melody-drum
     ((arp-gen 250 (fib4 concat
                         '((0 7 12) () ())
